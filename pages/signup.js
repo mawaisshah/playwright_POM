@@ -31,6 +31,7 @@ exports.signUp = class signUp {
     this.userEmailText = faker.internet.email();
     this.accountCreatedText = "Account Created!";
     this.logoutText = "Logout";
+    this.signupText= "Signup / Login";
     this.registrationData = [
       "John1234",
       faker.random.number(31).toString(),
