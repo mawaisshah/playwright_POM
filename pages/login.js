@@ -6,7 +6,7 @@ exports.login = class login {
     this.passwordField = page.locator("input[type='password']");
     this.loginBtn = page.locator("button[data-qa='login-button']");
     //Data used for the login page
-    this.userEmail = "John19@gamil.com";
+    this.userEmail = "John17@gamil.com";
     this.userPassword = "John1234"
   }
   async userLogin(email, password) {
