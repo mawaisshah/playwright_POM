@@ -1,4 +1,4 @@
-exports.login = class login {
+export class login {
   constructor(page) {
     this.page = page;
     //Selectors used for the login page
@@ -6,8 +6,8 @@ exports.login = class login {
     this.passwordField = page.locator("input[type='password']");
     this.loginBtn = page.locator("button[data-qa='login-button']");
     //Data used for the login page
-    this.userEmail = "John17@gamil.com";
-    this.userPassword = "John1234"
+    this.userEmail = "John16@gamil.com";
+    this.userPassword = "John1234";
   }
   async userLogin(email, password) {
     await this.emailAddressField.fill(email);

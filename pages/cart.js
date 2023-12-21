@@ -1,5 +1,5 @@
 const fs = require("fs").promises;
-exports.cart = class cart {
+export class cart {
   constructor(page) {
     this.page = page;
     //Selectors used for the login page

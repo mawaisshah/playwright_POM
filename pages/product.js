@@ -1,4 +1,4 @@
-exports.product = class product {
+export class product {
   constructor(page) {
     this.page = page;
     //Selectors used for the login page

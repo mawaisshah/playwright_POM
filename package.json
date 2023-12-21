@@ -17,9 +17,10 @@
   "homepage": "https://github.com/mawaisshah/playwright_POM#readme",
   "devDependencies": {
     "@playwright/test": "^1.40.1",
-    "@types/node": "^20.10.4"
+    "@types/node": "^20.10.5"
   },
   "dependencies": {
-    "faker": "^5.5.3"
+    "faker": "^5.5.3",
+    "playwright": "^1.40.1"
   }
 }

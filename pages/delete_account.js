@@ -1,4 +1,4 @@
-exports.deleteAcc = class deleteAcc {
+export class deleteAcc {
   constructor(page) {
     this.page = page;
     //Selectors used for the login page

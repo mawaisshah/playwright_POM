@@ -1,4 +1,4 @@
-exports.logout = class logout {
+export class logout {
     constructor(page) {
       this.page = page;
       //Selectors used for the login page

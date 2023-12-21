@@ -1,17 +1,10 @@
-const { test, expect } = require("@playwright/test");
-const { signUp } = require("../pages/signup");
+import { test, expect } from "../plugins/fixtures";
 
-test("Verify the user is able to register on the site", async ({ page }) => {
-  const signUpPage = new signUp(page);
-  await signUpPage.signUpPage();
-  await signUpPage.userSignUp(
-    signUpPage.userEmailText,
-    signUpPage.userEmailText
-  );
-  await signUpPage.registrationForm(signUpPage.registrationData);
-  await expect(signUpPage.accountCreated).toHaveText(
-    signUpPage.accountCreatedText
-  );
-  await signUpPage.continueBtn.click();
-  await expect(signUpPage.logoutBtn).toHaveText(signUpPage.logoutText);
+test("Verify the user is able to register on the site", async ({ Signup }) => {
+  await Signup.signUpPage();
+  await Signup.userSignUp(Signup.userEmailText, Signup.userEmailText);
+  await Signup.registrationForm(Signup.registrationData);
+  await expect(Signup.accountCreated).toHaveText(Signup.accountCreatedText);
+  await Signup.continueBtn.click();
+  await expect(Signup.logoutBtn).toHaveText(Signup.logoutText);
 });

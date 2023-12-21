@@ -1,5 +1,5 @@
 const faker = require("faker");
-exports.signUp = class signUp {
+export class signUp {
   constructor(page) {
     this.page = page;
     //Selectors used for the signUp page
@@ -31,7 +31,7 @@ exports.signUp = class signUp {
     this.userEmailText = faker.internet.email();
     this.accountCreatedText = "Account Created!";
     this.logoutText = "Logout";
-    this.signupText= "Signup / Login";
+    this.signupText = "Signup / Login";
     this.registrationData = [
       "John1234",
       faker.random.number(31).toString(),
@@ -76,4 +76,4 @@ exports.signUp = class signUp {
     await this.phoneNumber.fill(userData[13]);
     await this.submitBtn.click();
   }
-};
+}

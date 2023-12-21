@@ -1,19 +1,13 @@
-const { test, expect } = require("@playwright/test");
-const { signUp } = require("../pages/signup");
-const { deleteAcc } = require("../pages/delete_account");
+import { test, expect } from "../plugins/fixtures";
 
 test("Verify the user is able to delete the registered account", async ({
-  page,
+  Signup,
+  Delete,
 }) => {
-  const signUpPage = new signUp(page);
-  const deleteAccount = new deleteAcc(page);
-  await signUpPage.signUpPage();
-  await signUpPage.userSignUp(
-    signUpPage.userEmailText,
-    signUpPage.userEmailText
-  );
-  await signUpPage.registrationForm(signUpPage.registrationData);
-  await signUpPage.continueBtn.click();
-  await deleteAccount.deleteUser();
-  await expect(deleteAccount.deleteLabel).toHaveText(deleteAccount.deleteText);
+  await Signup.signUpPage();
+  await Signup.userSignUp(Signup.userEmailText, Signup.userEmailText);
+  await Signup.registrationForm(Signup.registrationData);
+  await Signup.continueBtn.click();
+  await Delete.deleteUser();
+  await expect(Delete.deleteLabel).toHaveText(Delete.deleteText);
 });

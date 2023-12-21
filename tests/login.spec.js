@@ -1,13 +1,10 @@
-const { test, expect } = require("@playwright/test");
-const { login } = require("../pages/login");
-const { signUp } = require("../pages/signup");
+import { test, expect } from "../plugins/fixtures";
 
 test("Verify the user is able to login in to the site using valid credentials", async ({
-  page,
+  Signup,
+  Login,
 }) => {
-  const signUpPage = new signUp(page);
-  const loginPage = new login(page);
-  await signUpPage.signUpPage();
-  await loginPage.userLogin(loginPage.userEmail, loginPage.userPassword);
-  await expect(signUpPage.logoutBtn).toHaveText(signUpPage.logoutText);
+  await Signup.signUpPage();
+  await Login.userLogin(Login.userEmail, Login.userPassword);
+  await expect(Signup.logoutBtn).toHaveText(Signup.logoutText);
 });
