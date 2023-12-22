@@ -65,3 +65,41 @@ test("Verify the user is able to remove the product from the cart", async ({
     Product.emptyCartText.trim()
   );
 });
+test("Verify the user is able to submit a review", async ({ page }) => {
+  const signUpPage = new signUp(page);
+  const loginPage = new login(page);
+  const productPage = new product(page);
+  await signUpPage.signUpPage();
+  await loginPage.userLogin(loginPage.userEmail, loginPage.userPassword);
+  await productPage.productReview();
+  await expect(productPage.submittedLabel).toContainText(
+    productPage.submittedText.trim()
+  );
+});
+test("Verify the user is able to add the product to the cart", async ({
+  page,
+}) => {
+  const signUpPage = new signUp(page);
+  const loginPage = new login(page);
+  const productPage = new product(page);
+  await signUpPage.signUpPage();
+  await loginPage.userLogin(loginPage.userEmail, loginPage.userPassword);
+  await productPage.addToCart();
+  await expect(productPage.addedLabel).toContainText(
+    productPage.addedText.trim()
+  );
+});
+test("Verify the user is able to remove the product from the cart", async ({
+  page,
+}) => {
+  const signUpPage = new signUp(page);
+  const loginPage = new login(page);
+  const productPage = new product(page);
+  await signUpPage.signUpPage();
+  await loginPage.userLogin(loginPage.userEmail, loginPage.userPassword);
+  await productPage.addToCart();
+  await productPage.removeProduct();
+  await expect(productPage.emptyCartLabel).toContainText(
+    productPage.emptyCartText.trim()
+  );
+});
