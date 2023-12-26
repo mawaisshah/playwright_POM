@@ -5,9 +5,10 @@ const base = myTest.extend({
     const userEmail = "John15@gmail.com";
     const password = "John1234";
     const subscribedLabel = page.locator("[id='success-subscribe']");
+    const signupBtn = page.locator("//a[contains(.,'Signup / Login')]");
     const subscribedText = "You have been successfully subscribed!";
 
-    await use({ userEmail, password, subscribedLabel, subscribedText });
+    await use({ userEmail, password, subscribedLabel, subscribedText, signupBtn });
   },
 
   subscription: async ({ page }, use) => {

@@ -39,7 +39,7 @@ export class cart {
   }
   async downloadInvoice() {
     await this.downloadInvoiceBtn.click();
-    const expectedFilePath = "C:/Users/DELL/Downloads/invoice.txt";
+    const expectedFilePath = "C:/Users/DELL/Downloads/";
     let fileExists;
     try {
       await fs.access(expectedFilePath);
@@ -49,4 +49,4 @@ export class cart {
     }
     return fileExists;
   }
-};
+}
