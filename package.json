@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:parallel":"npx playwright test tests/product.spec.js",
+    "test:sequence":"npx playwright test tests/product.spec.js --workers=1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mawaisshah/playwright_POM.git"
