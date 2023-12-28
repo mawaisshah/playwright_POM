@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:parallel":"npx playwright test tests/product.spec.js",
-    "test:sequence":"npx playwright test tests/product.spec.js --workers=1"
+    "test:parallel": "npx playwright test tests/product.spec.js",
+    "test:sequence": "npx playwright test tests/product.spec.js --workers=1"
   },
   "repository": {
     "type": "git",
@@ -20,10 +20,12 @@
   "homepage": "https://github.com/mawaisshah/playwright_POM#readme",
   "devDependencies": {
     "@playwright/test": "^1.40.1",
-    "@types/node": "^20.10.5"
+    "@types/node": "^20.10.5",
+    "allure-commandline": "^2.25.0"
   },
   "dependencies": {
     "faker": "^5.5.3",
-    "playwright": "^1.40.1"
+    "playwright": "^1.40.1",
+    "allure-playwright": "2.10.0"
   }
 }
