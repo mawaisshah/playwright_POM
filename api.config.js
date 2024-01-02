@@ -14,7 +14,7 @@ dotenv.config({
  * @see https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({
-  testDir: "./tests/e2e",
+  testDir: "./tests/api",
   timeout: 60000,
   // testMatch: ['logout.spec.js'],
   // testIgnore: ['pages_playground.spec.js'],

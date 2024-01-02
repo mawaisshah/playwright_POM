@@ -1,4 +1,4 @@
-import { test, expect } from "../plugins/fixtures";
+import { test, expect } from "../../plugins/fixtures";
 test.describe.configure({
     // mode:"parallel"
     mode:"serial"

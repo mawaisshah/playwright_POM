@@ -1,4 +1,4 @@
-import { test, expect } from "../plugins/fixtures";
+import { test, expect } from "../../plugins/fixtures";
 
 test("Verify the user is able to delete the registered account", async ({
   Signup,
