@@ -1,4 +1,5 @@
 const faker = require("faker");
+const baseURL = process.env.BASE_URL
 export class signUp {
   constructor(page) {
     this.page = page;
@@ -50,7 +51,7 @@ export class signUp {
     ];
   }
   async signUpPage() {
-    await this.page.goto("/");
+    await this.page.goto(baseURL);
     await this.signUpBtn.click();
   }
   async userSignUp(name, email) {
