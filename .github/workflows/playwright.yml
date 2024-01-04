@@ -1,4 +1,5 @@
 name: Playwright Tests with Allure
+
 on:
   push:
     branches: [main, master]
@@ -9,6 +10,11 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        test-type: [e2e, api]
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -25,18 +31,18 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: npx playwright test --reporter=allure-playwright
+        run: |
+          npx cross-env ENV=${{ matrix.test-type }} playwright test --reporter=allure-playwright --config=playwright.${{ matrix.test-type }}.config.js
 
       - name: Generate Allure Reports
         run: |
           npm install -g allure-commandline
-          npx allure generate ./allure-results 
+          npx allure generate ./allure-results
 
       - name: Upload Allure Reports
         uses: actions/upload-artifact@v3
         if: always()
         with:
-          name: allure-report
+          name: allure-report-${{ matrix.test-type }}
           path: allure-report
           retention-days: 30
- 

@@ -1,4 +1,4 @@
-import { test, expect } from "../../plugins/fixtures";
+import { test, expect } from "../../plugins/e2e_helpers";
 
 test("Verify the user is able to search for a product", async ({
   Signup,
