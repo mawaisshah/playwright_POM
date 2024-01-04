@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        test-type: [playwright, api]
+        test-type: [e2e, api]
 
     steps:
       - name: Checkout Repository
