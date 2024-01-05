@@ -1,5 +1,5 @@
 const faker = require("faker");
-const baseURL = process.env.BASE_URL
+const baseURL = process.env.BASE_URL_E2E
 export class signUp {
   constructor(page) {
     this.page = page;

@@ -1,22 +1,21 @@
 import { test, expect } from '../../plugins/api_helpers';
 const faker = require("faker");
-import { USER_ENDPOINTS } from '../../plugins/end_points'
 
-const validEmail = process.env.VALID_EMAIL
-const invalidEmail = process.env.INVALID_EMAIL
-const password = process.env.PASSWORD
+const validEmail = process.env.VALID_EMAIL_API
+const invalidEmail = process.env.INVALID_EMAIL_API
+const password = process.env.PASSWORD_API
 
-test('POST To All Products List', async ({ request, postData }) => {
-  const response = await request.post(USER_ENDPOINTS.productList)
+test('POST To All Products List', async ({ request, postData, postEndPoints }) => {
+  const response = await request.post(postEndPoints.productList)
   const responseBody = JSON.parse(await response.text());
 
   expect(responseBody.responseCode).toBe(405);
   expect(responseBody.message).toContain(postData.notSupported);
 });
-test('POST To Search Product', async ({ request }) => {
+test('POST To Search Product', async ({ request, postEndPoints }) => {
   const formData = new URLSearchParams();
   formData.append('search_product', 'top');
-  const response = await request.post(USER_ENDPOINTS.searchProduct, {
+  const response = await request.post(postEndPoints.searchProduct, {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     },
@@ -34,18 +33,18 @@ test('POST To Search Product', async ({ request }) => {
   expect(responseBody.responseCode).toBe(200);
   expect(hasProductWithTopCategory || hasProductWithTopName).toBe(true);
 });
-test('POST To Search Product Without search_product Parameter', async ({ request, postData }) => {
-  const response = await request.post(USER_ENDPOINTS.searchProduct);
+test('POST To Search Product Without search_product Parameter', async ({ request, postData, postEndPoints }) => {
+  const response = await request.post(postEndPoints.searchProduct);
   const responseBody = JSON.parse(await response.text());
 
   expect(responseBody.responseCode).toBe(400);
   expect(responseBody.message).toContain(postData.badRequestSearchProduct);
 });
-test('POST To Verify Login With Valid Credentials', async ({ request, postData }) => {
+test('POST To Verify Login With Valid Credentials', async ({ request, postData, postEndPoints }) => {
   const formData = new URLSearchParams();
   formData.append('email', validEmail);
   formData.append('password', password);
-  const response = await request.post(USER_ENDPOINTS.verifyLogin, {
+  const response = await request.post(postEndPoints.verifyLogin, {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
@@ -56,10 +55,10 @@ test('POST To Verify Login With Valid Credentials', async ({ request, postData }
   expect(responseBody.responseCode).toBe(200);
   expect(responseBody.message).toContain(postData.userExists);
 });
-test('POST To Verify Login Without Email Parameter', async ({ request, postData }) => {
+test('POST To Verify Login Without Email Parameter', async ({ request, postData, postEndPoints }) => {
   const formData = new URLSearchParams();
   formData.append('password', password);
-  const response = await request.post(USER_ENDPOINTS.verifyLogin, {
+  const response = await request.post(postEndPoints.verifyLogin, {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
@@ -71,11 +70,11 @@ test('POST To Verify Login Without Email Parameter', async ({ request, postData 
   expect(responseBody.responseCode).toBe(400);
   expect(responseBody.message).toContain(postData.badRequestEmailPassword);
 });
-test('POST To Verify Login With Invalid Credentials', async ({ request, postData }) => {
+test('POST To Verify Login With Invalid Credentials', async ({ request, postData, postEndPoints }) => {
   const formData = new URLSearchParams();
   formData.append('email', invalidEmail);
   formData.append('password', password);
-  const response = await request.post(USER_ENDPOINTS.verifyLogin, {
+  const response = await request.post(postEndPoints.verifyLogin, {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
@@ -86,7 +85,7 @@ test('POST To Verify Login With Invalid Credentials', async ({ request, postData
   expect(responseBody.responseCode).toBe(404);
   expect(responseBody.message).toContain(postData.userNotFound);
 });
-test('POST To Create User Account', async ({ request, postData }) => {
+test('POST To Create User Account', async ({ request, postData, postEndPoints }) => {
   const formData = new URLSearchParams();
   formData.append('name', faker.name.firstName());
   formData.append('email', faker.internet.email());
@@ -105,7 +104,7 @@ test('POST To Create User Account', async ({ request, postData }) => {
   formData.append('state', faker.address.state());
   formData.append('city', faker.address.city());
   formData.append('mobile_number', faker.phone.phoneNumber());
-  const response = await request.post(USER_ENDPOINTS.createAccount, {
+  const response = await request.post(postEndPoints.createAccount, {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },

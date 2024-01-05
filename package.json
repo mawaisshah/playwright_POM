@@ -6,7 +6,7 @@
   "scripts": {
     "test:parallel": "npx playwright test tests/product.spec.js",
     "test:sequence": "npx playwright test tests/product.spec.js --workers=1",
-    "test:e2e": "npx cross-env ENV=e2e playwright test --config=playwright.config.js",
+    "test:e2e": "npx cross-env ENV=e2e playwright test --config=e2e.config.js",
     "test:api": "npx cross-env ENV=api playwright test --config=api.config.js"
 
   },
