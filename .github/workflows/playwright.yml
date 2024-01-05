@@ -15,19 +15,18 @@ jobs:
       matrix:
         test-type: [e2e, api]
 
+    env:
+      BASE_URL_API: ${{ secrets.BASE_URL_API }}
+      BASE_URL_E2E: ${{ secrets.BASE_URL_E2E }}
+      EMAIL_E2E: ${{ secrets.EMAIL_E2E }}
+      INVALID_EMAIL_API: ${{ secrets.INVALID_EMAIL_API }}
+      PASSWORD_API: ${{ secrets.PASSWORD_API }}
+      PASSWORD_E2E: ${{ secrets.PASSWORD_E2E }}
+      VALID_EMAIL_API: ${{ secrets.VALID_EMAIL_API }}
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-
-      - name: Set Environment Variables
-        run: |
-          echo "BASE_URL_API=${{ secrets.BASE_URL_API }}" >> .env
-          echo "BASE_URL_E2E=${{ secrets.BASE_URL_E2E }}" >> .env
-          echo "EMAIL_E2E=${{ secrets.EMAIL_E2E }}" >> .env
-          echo "INVALID_EMAIL_API=${{ secrets.INVALID_EMAIL_API }}" >> .env
-          echo "PASSWORD_API=${{ secrets.PASSWORD_API }}" >> .env
-          echo "PASSWORD_E2E=${{ secrets.PASSWORD_E2E }}" >> .env
-          echo "VALID_EMAIL_API=${{ secrets.VALID_EMAIL_API }}" >> .env
 
       - name: Set Up Node.js
         uses: actions/setup-node@v3
