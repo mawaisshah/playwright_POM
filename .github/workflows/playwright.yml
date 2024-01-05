@@ -21,13 +21,13 @@ jobs:
 
       - name: Set Environment Variables
         run: |
-          echo "BASE_URL_API=${{ secrets[format('BASE_URL_API_{0}', matrix.test-type)] }}" >> .env
-          echo "BASE_URL_E2E=${{ secrets[format('BASE_URL_E2E_{0}', matrix.test-type)] }}" >> .env
-          echo "EMAIL_E2E=${{ secrets[format('EMAIL_E2E_{0}', matrix.test-type)] }}" >> .env
-          echo "INVALID_EMAIL_API=${{ secrets[format('INVALID_EMAIL_API_{0}', matrix.test-type)] }}" >> .env
-          echo "PASSWORD_API=${{ secrets[format('PASSWORD_API_{0}', matrix.test-type)] }}" >> .env
-          echo "PASSWORD_E2E=${{ secrets[format('PASSWORD_E2E_{0}', matrix.test-type)] }}" >> .env
-          echo "VALID_EMAIL_API=${{ secrets[format('VALID_EMAIL_API_{0}', matrix.test-type)] }}" >> .env
+          echo "BASE_URL_API=${{ secrets.BASE_URL_API_${{matrix.test-type}} }}" >> .env
+          echo "BASE_URL_E2E=${{ secrets.BASE_URL_E2E_${{matrix.test-type}} }}" >> .env
+          echo "EMAIL_E2E=${{ secrets.EMAIL_E2E_${{matrix.test-type}} }}" >> .env
+          echo "INVALID_EMAIL_API=${{ secrets.INVALID_EMAIL_API_${{matrix.test-type}} }}" >> .env
+          echo "PASSWORD_API=${{ secrets.PASSWORD_API_${{matrix.test-type}} }}" >> .env
+          echo "PASSWORD_E2E=${{ secrets.PASSWORD_E2E_${{matrix.test-type}} }}" >> .env
+          echo "VALID_EMAIL_API=${{ secrets.VALID_EMAIL_API_${{matrix.test-type}} }}" >> .env
 
       - name: Set Up Node.js
         uses: actions/setup-node@v3
@@ -42,7 +42,7 @@ jobs:
 
       - name: Run Playwright tests
         run: |
-          npx playwright test --reporter=allure-playwright --config=${{ matrix.test-type }}.config.js
+          npx cross-env ENV=${{ matrix.test-type }} playwright test --reporter=allure-playwright --config=${{ matrix.test-type }}.config.js
 
       - name: Generate Allure Reports
         run: |
