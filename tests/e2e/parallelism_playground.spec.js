@@ -1,4 +1,6 @@
 import { test, expect } from "../../plugins/e2e_helpers";
+import { setupHooks } from "../../plugins/hooks";
+setupHooks();
 test.describe.configure({
     // mode:"parallel"
     mode:"serial"

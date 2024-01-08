@@ -6,8 +6,6 @@ import { cart } from "../pages/cart";
 import { logout } from "../pages/logout";
 import { deleteAcc } from "../pages/delete_account";
 
-
-
 const testPages = baseTest.extend({
   Signup: async ({ page }, use) => {
     await use(new signUp(page));

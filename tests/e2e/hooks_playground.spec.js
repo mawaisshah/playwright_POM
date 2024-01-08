@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
-import { setupHooks } from "../../plugins/hooks";
-import { page } from "../../plugins/hooks";
+import { setupHooks, page } from "../../plugins/hooks";
+
 
 setupHooks();
 
