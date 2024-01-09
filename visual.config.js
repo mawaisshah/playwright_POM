@@ -1,9 +1,5 @@
 // @ts-check
 import { defineConfig, devices } from "@playwright/test";
-import dotenv from "dotenv"
-dotenv.config({
-    path:`env/.env.${process.env.ENV}`,
-});
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -14,8 +10,7 @@ dotenv.config({
  * @see https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({
-  globalSetup: "./global-setup",
-  testDir: "./tests/e2e",
+  testDir: "./tests/visual",
   timeout: 60000,
   // testMatch: ['logout.spec.js'],
   // testIgnore: ['pages_playground.spec.js'],
@@ -28,16 +23,7 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : 4,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [
-    [
-      "allure-playwright",
-      {
-        outputFolder: "allure-results",
-        detail: true,
-        suiteTitle: false,
-      },
-    ],
-  ],
+  reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
@@ -47,7 +33,6 @@ export default defineConfig({
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
     video: "retain-on-failure",
-    storageState: "./loginAuth.json"
   },
 
   /* Configure projects for major browsers */
@@ -55,6 +40,10 @@ export default defineConfig({
     {
       name: "chromium",
       use: { ...devices["Desktop Chrome"] },
+    },
+    {
+      name: "iphoe",
+      use: { ...devices["iPhone 14 Pro Max"] },
     },
 
     // {

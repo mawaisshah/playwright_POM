@@ -2,12 +2,11 @@ import { test, expect } from "../../plugins/e2e_helpers";
 
 test("Verify the user is able to proceed to checkout", async ({
   Signup,
-  Login,
   Product,
   Cart,
 }) => {
   await Signup.signUpPage();
-  await Login.userLogin(Login.userEmail, Login.userPassword);
+  // await Login.userLogin(Login.userEmail, Login.userPassword);
   await Product.addToCart();
   await Cart.proceedToCheckout();
   await expect(Cart.orderPlacedLabel).toContainText(

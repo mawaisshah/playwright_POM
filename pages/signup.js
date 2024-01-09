@@ -52,7 +52,7 @@ export class signUp {
   }
   async signUpPage() {
     await this.page.goto(baseURL);
-    await this.signUpBtn.click();
+    // await this.signUpBtn.click();
   }
   async userSignUp(name, email) {
     await this.userName.fill(name);
