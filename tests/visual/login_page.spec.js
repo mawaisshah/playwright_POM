@@ -1,4 +1,4 @@
-import { test, expect } from "../../plugins/e2e_helpers";
+import { test, expect } from "@playwright/test";
 
 test("Verify the Login Page As Per Figma", async ({ page }) => {
     await page.goto("https://www.automationexercise.com/login");
