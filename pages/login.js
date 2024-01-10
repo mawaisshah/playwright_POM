@@ -8,10 +8,11 @@ export class login {
     //Data used for the login page
     this.userEmail = process.env.EMAIL_E2E;
     this.userPassword = process.env.PASSWORD_E2E;
+    this.baseURL = process.env.BASE_URL_E2E;
+
   }
-  async userLogin(email, password) {
-    await this.emailAddressField.fill(email);
-    await this.passwordField.fill(password);
-    await this.loginBtn.click();
+  async userLogin() {
+    await this.page.goto(this.baseURL);
+
   }
 }

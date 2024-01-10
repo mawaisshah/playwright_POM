@@ -11,7 +11,10 @@ import { defineConfig, devices } from "@playwright/test";
  */
 export default defineConfig({
   testDir: "./tests/visual",
-  timeout: 60000,
+  timeout: 50000,
+  expect: {
+    timeout: 50000, // Default timeout for visual assertions
+  },
   // testMatch: ['logout.spec.js'],
   // testIgnore: ['pages_playground.spec.js'],
   /* Run tests in files in parallel */
@@ -39,11 +42,11 @@ export default defineConfig({
   projects: [
     {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"] },
+      use: { ...devices["Desktop Chrome"], viewport: { width: 1920, height: 1080 } },
     },
     {
       name: "iphoe",
-      use: { ...devices["iPhone 14 Pro Max"] },
+      use: { ...devices["iPhone 14 Pro Max"], viewport: { width: 428, height: 926 } },
     },
 
     // {

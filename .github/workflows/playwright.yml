@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        test-type: [e2e, api]
+        test-type: [e2e, api, visual]
 
     env:
       BASE_URL_API: ${{ secrets.BASE_URL_API }}
@@ -41,7 +41,7 @@ jobs:
 
       - name: Run Playwright tests
         run: |
-          npx cross-env ENV=${{ matrix.test-type }} playwright test --reporter=allure-playwright --config=${{ matrix.test-type }}.config.js
+          npx playwright test --reporter=allure-playwright --config=${{ matrix.test-type }}.config.js
 
       - name: Generate Allure Reports
         run: |

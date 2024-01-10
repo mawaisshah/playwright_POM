@@ -10,7 +10,7 @@ test("Verify the Login Full Page As Per Figma", async ({ page }) => {
 });
 test("Verify the Product Page With Masking As Per Figma", async ({ page }) => {
     await page.goto("https://www.automationexercise.com/products");
-    await expect(page).toHaveScreenshot("products-page.png", { fullPage: true, mask: [page.locator("(//div[@class='productinfo text-center']//p)[1]")] });
+    await expect(page).toHaveScreenshot("products-page.png", { fullPage: true, mask: [page.locator("[class='productinfo text-center'] p")]});
 });
 test("Verify the Product Page Section As Per Figma", async ({ page }) => {
     await page.goto("https://www.automationexercise.com/products");
@@ -23,7 +23,7 @@ test("Verify the Product Page Pixel Ratio As Per Figma", async ({ page }) => {
         maxDiffPixels: 3000,
     });
 });
-test.only("Verify the Cart Page On Different Screens", async ({ page }) => {
+test("Verify the Cart Page On Different Screens", async ({ page }) => {
     await page.goto("https://www.automationexercise.com/view_cart");
-    await expect(page).toHaveScreenshot("cart-page-on-iphone.png");
+    await expect(page).toHaveScreenshot("cart-page.png");
 });
