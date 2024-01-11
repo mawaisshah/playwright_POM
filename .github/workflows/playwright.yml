@@ -39,6 +39,10 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
+      - name: Generate Snapshots
+        if: matrix.test-type == 'visual'
+        run: npx playwright test --update-snapshots
+
       - name: Run Playwright tests
         run: |
           npx playwright test --config=${{ matrix.test-type }}.config.js
