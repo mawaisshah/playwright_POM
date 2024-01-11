@@ -41,7 +41,7 @@ jobs:
 
       - name: Generate Snapshots
         if: matrix.test-type == 'visual'
-        run: npx playwright test --update-snapshots
+        run: npx playwright test --config=${{ matrix.test-type }}.config.js --update-snapshots
 
       - name: Run Playwright tests
         run: |
