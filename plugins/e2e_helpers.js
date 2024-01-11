@@ -5,24 +5,24 @@ import { product } from "../pages/product";
 import { cart } from "../pages/cart";
 import { logout } from "../pages/logout";
 import { deleteAcc } from "../pages/delete_account";
-
+import { page } from "./hooks";
 const testPages = baseTest.extend({
-  Signup: async ({ page }, use) => {
+  Signup: async ({  }, use) => {
     await use(new signUp(page));
   },
-  Login: async ({ page }, use) => {
+  Login: async ({  }, use) => {
     await use(new login(page));
   },
-  Product: async ({ page }, use) => {
+  Product: async ({  }, use) => {
     await use(new product(page));
   },
-  Cart: async ({ page }, use) => {
+  Cart: async ({  }, use) => {
     await use(new cart(page));
   },
-  Logout: async ({ page }, use) => {
+  Logout: async ({  }, use) => {
     await use(new logout(page));
   },
-  Delete: async ({ page }, use) => {
+  Delete: async ({  }, use) => {
     await use(new deleteAcc(page));
   },
 });

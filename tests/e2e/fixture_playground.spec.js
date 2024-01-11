@@ -24,6 +24,7 @@ const base = myTest.extend({
 
   signUp: async ({  }, use) => {
     const signUpFunction = async () => {
+      await page.goto(process.env.BASE_URL_E2E);
       await page.click("//a[contains(.,'Signup / Login')]");
     };
 

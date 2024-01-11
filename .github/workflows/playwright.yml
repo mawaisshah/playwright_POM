@@ -41,7 +41,7 @@ jobs:
 
       - name: Run Playwright tests
         run: |
-          npx playwright test --reporter=allure-playwright --config=${{ matrix.test-type }}.config.js
+          npx playwright test --config=${{ matrix.test-type }}.config.js
 
       - name: Generate Allure Reports
         run: |

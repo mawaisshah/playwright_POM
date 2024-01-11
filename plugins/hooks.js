@@ -1,15 +1,20 @@
-import { test } from "@playwright/test";
-const { webkit } = require("@playwright/test");
+import { test, chromium } from "@playwright/test";
 let browser, context, page;
 export const setupHooks = () => {
   test.beforeEach(async () => {
-    await page.goto("https://www.automationexercise.com/login");
+    await context.route('**/*', route => {
+      if (route.request().url().includes('ads')) {
+        route.abort();
+      } else {
+        route.continue();
+      }
+    });
+
   });
   test.afterEach(async () => {
-    await page.reload();
   });
   test.beforeAll(async () => {
-    browser = await webkit.launch();
+    browser = await chromium.launch();
     context = await browser.newContext();
     page = await context.newPage();
   });
