@@ -5,7 +5,9 @@ import { product } from "../pages/product";
 import { cart } from "../pages/cart";
 import { logout } from "../pages/logout";
 import { deleteAcc } from "../pages/delete_account";
+import { contactUs } from "../pages/contact_us";
 import { page } from "./hooks";
+
 const testPages = baseTest.extend({
   Signup: async ({  }, use) => {
     await use(new signUp(page));
@@ -24,6 +26,9 @@ const testPages = baseTest.extend({
   },
   Delete: async ({  }, use) => {
     await use(new deleteAcc(page));
+  },
+  Contact: async ({  }, use) => {
+    await use(new contactUs(page));
   },
 });
 export const test = testPages;

@@ -18,6 +18,7 @@ test("Verify the user is able to search a product by category", async ({
   await Login.userLogin();
   await Product.productByCategory();
   await expect(Product.categoryTitle).toContainText(Product.searchFor.trim());
+
 });
 test("Verify the user is able to search a product by brand", async ({
   Login,

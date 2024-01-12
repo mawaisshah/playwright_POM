@@ -4,7 +4,7 @@ setupHooks();
 
 const base = myTest.extend({
   userData: async ({ }, use) => {
-    const userEmail = "John15@gmail.com";
+    const userEmail = "John16@gmail.com";
     const password = "John1234";
     const subscribedLabel = page.locator("[id='success-subscribe']");
     const signupBtn = page.locator("//a[contains(.,'Signup / Login')]");
@@ -13,8 +13,10 @@ const base = myTest.extend({
     await use({ userEmail, password, subscribedLabel, subscribedText, signupBtn });
   },
 
-  subscription: async ({  }, use) => {
+  subscription: async ({ }, use) => {
     const subscriptionFunction = async (email) => {
+      const emailField = page.locator("input[type='email']");
+      await emailField.scrollIntoViewIfNeeded();
       await page.fill("input[type='email']", email);
       await page.click("button#subscribe>i");
     };
@@ -22,7 +24,7 @@ const base = myTest.extend({
     await use(subscriptionFunction);
   },
 
-  signUp: async ({  }, use) => {
+  signUp: async ({ }, use) => {
     const signUpFunction = async () => {
       await page.goto(process.env.BASE_URL_E2E);
       await page.click("//a[contains(.,'Signup / Login')]");
@@ -31,7 +33,7 @@ const base = myTest.extend({
     await use(signUpFunction);
   },
 
-  login: async ({  }, use) => {
+  login: async ({ }, use) => {
     const loginFunction = async (email, password) => {
       await page.fill("input[name='email']", email);
       await page.fill("input[name='password']", password);
